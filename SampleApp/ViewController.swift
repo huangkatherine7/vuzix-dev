@@ -39,6 +39,7 @@ class ViewController: UltraliteBaseViewController {
     public var currentSpeechInput: String = ""
     public var currentSpeechInputLen: Int = 0
     public var trimmedInput: String = ""
+    public var noiseRemovedInput: String = ""
     
 
     
@@ -158,15 +159,34 @@ class ViewController: UltraliteBaseViewController {
             print("CURRENT LEN: \(currentSpeechInputLen)")
             print("CURRENT INPUT: \(currentInput)")
             
+            //trim prior queries from the input
             trimmedInput = String(currentInput.dropFirst(currentSpeechInputLen)) //+1 to trim an accumulating space??
             print("TRIMMED INPUT: \(trimmedInput)")
             
-            if !trimmedInput.contains("Sapphire") {
+        
+            
+            
+            //check for key word
+            if !trimmedInput.lowercased().contains("sapphire") {
                 print("Returning because the key word wasn't found")
                 self.currentSpeechInputLen = currentInput.count
                 return
             }
+            print("KEY WORD DETECTED!")
             
+            
+            //key word found, can proceed. Trim garbage noise from BEFORE the keyword
+            //TODO: if statement to check for keyword is not needed since will return above if no keyword
+            if let range = trimmedInput.lowercased().range(of: "sapphire") {
+                trimmedInput = trimmedInput[range.upperBound...].trimmingCharacters(in: .whitespacesAndNewlines)
+                print("TRIMMED INPUT:  \(trimmedInput)")
+                print("ENTERED IF STATEMENT")
+            }
+
+            
+            //perform queries
+            print("TRIMMED INPUT OUTSIDE IF:  \(trimmedInput)")
+//            trimmedInput = String(trimmedInput.dropFirst(9)) //trim 9 more to remove "sapphire" key word
             let commandType = self.router(trimmedInput)
             
             if commandType == "t" {

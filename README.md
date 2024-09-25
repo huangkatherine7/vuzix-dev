@@ -7,6 +7,13 @@ This repo is based on the [Ultralite SDK Sample for iOS application](https://git
 Clone the repository. Then, in Finder, double click on `SampleApp.xcodeproj` to open the project in Xcode. Connect your iPhone via USB to develop (make sure iPhone is set in Developer Mode). Upon opening the app, it will automatically pair with your Vuzix.
 
 # Applications
+Click the "Create Hello World" button to start listening.
+
+# Dev Notes
+Focus on synchronous instant execution tasks (ie. llm queries good, locally hosted timer bad) so I don't have to deal with multithread.
+
+## LLM Queries
+Ask any natural language query. For example: `Tell me a joke about cats`.
 
 ## Simple Timer
 
@@ -18,12 +25,13 @@ This phrase is passed to a llama-3.1-8B model (hosted on [build.nvidia.com](http
 
 The LLM extracts the key number `n` and sets an `n` minute timer, which is displayed counting down on the Vuzix display. When the timer finishes, the words "Time's up!" is displayed and the app also sends a notification.
 
-## Issues
-No ending condition yet...crashes after infinite listening
+## Issues/TODO
+1. Can't do timer and llm query at same time (timer has to finish for llm result to be displayed). Also timer pauses when new LLM query begins, and then resumes after the llm func returns.
+2. __Change to somehow call the iphone API then? So it's asynchronous?__
+1. (MAYBE OLD ISSUE??) No ending condition yet...crashes after infinite listening
 
 ## Other ideas
-1. GPT wrapper
-1. add to notes
+1. add to notes app
 1. add to calendar
 1. send message (text, discord)
 1. Spotify? How to design to see full playlist

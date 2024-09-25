@@ -1,0 +1,15 @@
+{
+  "originHash" : "d55d0bd4a5fd70f941baba299d1a83055dc281401a731022997a65278327f104",
+  "pins" : [
+    {
+      "identity" : "ultralitesdk-releases-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Vuzix/UltraliteSDK-releases-iOS",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a3b9b7cadfe084c191f59e2c530e8bdf79a28075"
+      }
+    }
+  ],
+  "version" : 3
+}

@@ -161,6 +161,12 @@ class ViewController: UltraliteBaseViewController {
             trimmedInput = String(currentInput.dropFirst(currentSpeechInputLen)) //+1 to trim an accumulating space??
             print("TRIMMED INPUT: \(trimmedInput)")
             
+            if !trimmedInput.contains("Sapphire") {
+                print("Returning because the key word wasn't found")
+                self.currentSpeechInputLen = currentInput.count
+                return
+            }
+            
             let commandType = self.router(trimmedInput)
             
             if commandType == "t" {
